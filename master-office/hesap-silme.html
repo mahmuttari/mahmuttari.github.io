@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://mahmuttari.github.io/master-office/hesap-silme.html">
+<link rel="icon" href="simge.png">
+<title>Master Office — Hesabı sil / Delete account</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; max-width: 640px; margin: 0 auto; padding: 24px 16px 64px; line-height: 1.6; color: #14213d; background: #fff; }
+  h1 { font-size: 1.5rem; margin-bottom: .2rem; }
+  h2 { font-size: 1.1rem; margin-top: 1.6rem; }
+  a { color: #1f5fff; }
+  .card { border: 1px solid #d8deea; border-radius: 14px; padding: 18px; margin: 18px 0; background: #f7f9fe; }
+  button { font: inherit; font-weight: 600; border-radius: 999px; padding: 11px 18px; min-height: 44px; cursor: pointer; width: 100%; margin: 6px 0; }
+  .google { background: #fff; color: #1f1f1f; border: 1px solid #747775; }
+  .apple { background: #000; color: #fff; border: 1px solid #000; }
+  .danger { background: #c62828; color: #fff; border: 0; }
+  .quiet { background: #e8edf7; color: #14213d; border: 0; }
+  .note { color: #5b6478; font-size: .92rem; }
+  #msg { font-weight: 600; }
+  #msg.err { color: #c62828; }
+  #msg.ok { color: #1b7f3b; }
+  [hidden] { display: none !important; }
+  hr { margin: 40px 0; border: 0; border-top: 1px solid #d8deea; }
+</style>
+</head>
+<body>
+
+<h1>Master Office — Hesabı sil</h1>
+<p>Master Office'te <strong>Google</strong> ya da <strong>Apple</strong> ile açtığın hesabı ve onunla saklanan bilgileri buradan kalıcı olarak silebilirsin. Uygulamayı yayımlayan: <strong>MARFEN</strong>.</p>
+
+<div class="card">
+  <div id="signedOut">
+    <p><strong>1.</strong> Hesabını açtığın yöntemle oturum aç:</p>
+    <button class="google" id="btnGoogle" type="button">Google ile oturum aç</button>
+    <button class="apple" id="btnApple" type="button">Apple ile oturum aç</button>
+  </div>
+  <div id="signedIn" hidden>
+    <p>Oturum açık: <strong id="who"></strong></p>
+    <p><strong>2.</strong> Hesabını ve onunla saklanan ayarları silmek için:</p>
+    <button class="danger" id="btnDelete" type="button">Hesabımı ve verilerimi kalıcı olarak sil</button>
+    <button class="quiet" id="btnOut" type="button">Vazgeç ve oturumu kapat</button>
+  </div>
+  <p id="msg" role="status" aria-live="polite"></p>
+</div>
+
+<h2>Neler silinir?</h2>
+<ul>
+  <li>Hesabın: adın, e-posta adresin ve sağlayıcının verdiği kullanıcı kimliği (Firebase Authentication).</li>
+  <li>Hesabınla eşitlenen uygulama ayarların: tema, dil, okuma görünümü, hızlı araçlar, dosya boyutu sınırı (Cloud Firestore).</li>
+</ul>
+<p>Silme kalıcıdır ve hemen yapılır; ayrı bir yedek tutulmaz. Belgelerin hiçbir zaman sunucuya yüklenmediği için silinecek belge yoktur; telefonundaki belgeler ve ayarlar bu işlemden etkilenmez.</p>
+<p>Aldığın bir paket (abonelik) hesapla birlikte iptal olmaz: aboneliği Google Play'de ya da Apple hesabı ayarlarında yönetirsin.</p>
+
+<h2>Başka yollar</h2>
+<ul>
+  <li><strong>Uygulamada:</strong> Hesap sekmesi › hesabın › <em>Hesabı sil</em>.</li>
+  <li><strong>E-postayla:</strong> oturum açamıyorsan hesabının e-posta adresinden <a href="mailto:info@marfen.com.tr?subject=Master%20Office%20hesap%20silme">info@marfen.com.tr</a> adresine "Master Office hesap silme" konulu bir e-posta gönder; hesabını en geç 30 gün içinde sileriz.</li>
+</ul>
+<p class="note">Gizlilik politikası: <a href="gizlilik.html">gizlilik.html</a></p>
+
+<hr>
+
+<div lang="en">
+<h1>Master Office — Delete your account</h1>
+<p>Here you can permanently delete the account you created in Master Office with <strong>Google</strong> or <strong>Apple</strong>, and the information stored with it. Use the buttons above: sign in with the same method, then choose "Hesabımı ve verilerimi kalıcı olarak sil" (delete my account and data).</p>
+<h2>What is deleted</h2>
+<ul>
+  <li>Your account: name, e-mail address and the user id given by the sign-in provider (Firebase Authentication).</li>
+  <li>The app settings synced with your account: theme, language, reading view, quick tools, file size limit (Cloud Firestore).</li>
+</ul>
+<p>Deletion is permanent and immediate; no separate backup is kept. Documents are never uploaded, so there are none to delete; the documents and settings on your phone are not affected. A package (subscription) you bought is not cancelled with the account: manage it in Google Play or in your Apple account settings.</p>
+<h2>Other ways</h2>
+<ul>
+  <li><strong>In the app:</strong> Account tab › your account › <em>Delete account</em>.</li>
+  <li><strong>By e-mail:</strong> if you cannot sign in, write from your account's e-mail address to <a href="mailto:info@marfen.com.tr?subject=Master%20Office%20account%20deletion">info@marfen.com.tr</a> with the subject "Master Office account deletion"; we delete the account within 30 days at the latest.</li>
+</ul>
+</div>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js';
+  import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, signOut, deleteUser, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js';
+  import { getFirestore, doc, deleteDoc } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js';
+
+  // Master Office's Firebase project (public identifiers: access is limited by the Firestore rules and the authorized domains)
+  const app = initializeApp({
+    apiKey: 'AIzaSyBue8yo_lThLAB94uB6Kc27OzgzgHb0Hzk',
+    authDomain: 'master-office-ofivora.firebaseapp.com',
+    projectId: 'master-office-ofivora',
+    appId: '1:465339565633:web:092b051981466f8e9d28c0',
+  });
+  const auth = getAuth(app);
+  auth.languageCode = 'tr';
+  const db = getFirestore(app);
+  const $ = id => document.getElementById(id);
+  const say = (text, kind = '') => { $('msg').textContent = text; $('msg').className = kind; };
+
+  onAuthStateChanged(auth, u => {
+    $('signedOut').hidden = !!u;
+    $('signedIn').hidden = !u;
+    $('who').textContent = u ? (u.email || u.displayName || u.uid) : '';
+  });
+
+  async function signIn(kind) {
+    say('');
+    try {
+      const p = kind === 'apple' ? new OAuthProvider('apple.com') : new GoogleAuthProvider();
+      if (kind === 'apple') { p.addScope('email'); p.setCustomParameters({ locale: 'tr' }); }
+      await signInWithPopup(auth, p);
+    } catch (e) {
+      const c = String(e && e.code || '');
+      if (/popup-closed|cancelled-popup/.test(c)) return;
+      say(/operation-not-allowed|invalid|configuration/.test(c)
+        ? 'Bu yöntemle web\'de oturum açılamıyor. Hesabını uygulamadan ya da e-postayla silebilirsin.'
+        : 'Oturum açılamadı (' + c + '). Yeniden dene.', 'err');
+    }
+  }
+
+  $('btnGoogle').addEventListener('click', () => signIn('google'));
+  $('btnApple').addEventListener('click', () => signIn('apple'));
+  $('btnOut').addEventListener('click', () => signOut(auth));
+  $('btnDelete').addEventListener('click', async () => {
+    const u = auth.currentUser;
+    if (!u) return;
+    if (!confirm('Hesabın ve onunla saklanan ayarların kalıcı olarak silinsin mi? Bu işlem geri alınamaz.')) return;
+    $('btnDelete').disabled = true;
+    try {
+      await deleteDoc(doc(db, 'kullanicilar', u.uid));
+      await deleteUser(u);
+      say('Hesabın ve onunla saklanan bilgiler silindi.', 'ok');
+    } catch (e) {
+      const c = String(e && e.code || '');
+      say(/requires-recent-login/.test(c) ? 'Güvenlik için yeniden oturum açıp tekrar dene.' : 'Hesap silinemedi (' + c + '). Yeniden dene ya da e-postayla iste.', 'err');
+      if (/requires-recent-login/.test(c)) await signOut(auth);
+    } finally {
+      $('btnDelete').disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
