@@ -18,7 +18,7 @@
 <body>
 
 <h1>Master Office — Gizlilik Politikası</h1>
-<p class="date">Yürürlük tarihi: 10 Kasım 2026 (sürüm 3.6.0: isteğe bağlı hesap ve iOS)</p>
+<p class="date">Yürürlük tarihi: 20 Kasım 2026 (sürüm 3.7: satın alma doğrulaması). Önceki sürüm: 10 Kasım 2026 (3.6.0: isteğe bağlı hesap ve iOS).</p>
 
 <p>Bu politika, Android ve iOS için <strong>Master Office</strong> uygulamasının (paket adı <code>com.ofivora.app</code>) hangi bilgileri nasıl kullandığını açıklar. Uygulamayı yayımlayan ve veri sorumlusu: <strong>MARFEN</strong>. İletişim: <strong><a href="mailto:info@marfen.com.tr">info@marfen.com.tr</a></strong>.</p>
 
@@ -26,7 +26,7 @@
 <p>Master Office belgelerinizi (PDF, Word, Excel, PowerPoint, metin, resim, ZIP/RAR) yalnız telefonunuzda veya tabletinizde açar ve işler. Belgeleriniz, içerikleri ve dosya adları hiçbir sunucuya yüklenmez, bize veya başkasına gönderilmez. Hesap açmak isteğe bağlıdır (3. bölüm); hesapla da belgeleriniz gönderilmez.</p>
 
 <h2>2. Cihazda tutulan bilgiler</h2>
-<p>Son açılan belgeler listesi, sık kullanılanlar, ayarlarınız, satın aldığınız paketin durumu ve araçların günlük kullanım sayacı yalnız cihazınızda saklanır. Bunları Ayarlar &gt; Son açılanları temizle ile ya da uygulamayı kaldırarak silebilirsiniz.</p>
+<p>Son açılan belgeler listesi, sık kullanılanlar, ayarlarınız, satın aldığınız paketin durumu ve araçların günlük kullanım sayacı cihazınızda saklanır; paketin doğrulama sunucusundaki kaydı için 7. bölüme bakın. Bunları Ayarlar &gt; Son açılanları temizle ile ya da uygulamayı kaldırarak silebilirsiniz.</p>
 
 <h2>3. İsteğe bağlı hesap ve ayar eşitleme</h2>
 <p>Uygulamada Google ya da Apple hesabınızla oturum açabilirsiniz. Bu isteğe bağlıdır; bütün özellikler oturum açmadan da çalışır. Oturum açarsanız şu bilgiler saklanır:</p>
@@ -61,7 +61,16 @@
 <p>Reklamsız ve Pro paketlerde reklam gösterilmez; reklam kitaplığı hiç başlatılmaz.</p>
 
 <h2>7. Satın almalar</h2>
-<p>Paketler Android'de Google Play, iOS'ta App Store abonelikleridir ve ödeme bu mağazalar üzerinden yapılır. Kart veya ödeme bilgilerinizi görmeyiz. Uygulama, hangi paketin geçerli olduğunu öğrenmek için yalnız mağazaya sorar. İptal ve iade işlemleri mağazanın kurallarına göre mağaza üzerinden yapılır.</p>
+<p>Paketler Android'de Google Play, iOS'ta App Store abonelikleridir ve ödeme bu mağazalar üzerinden yapılır. Kart veya ödeme bilgilerinizi görmeyiz. İptal ve iade işlemleri mağazanın kurallarına göre mağaza üzerinden yapılır.</p>
+<p>Sürüm 3.7'den itibaren hangi paketin geçerli olduğu MARFEN'in abonelik doğrulama sunucusunda (<code>abonelik.marfen.app</code>) denetlenir. Sunucu Cloudflare altyapısında çalışır; Cloudflare bunu bizim adımıza hizmet sağlayıcı olarak yapar.</p>
+<ul>
+  <li><strong>Gönderilenler:</strong> ilk açılışta oluşturulan rastgele bir müşteri kimliği, platform (Android / iOS), uygulamanın dili ve sürüm bilgisi. Bu kimlik adınıza, e-postanıza, hesabınıza ya da reklam kimliğinize bağlı değildir.</li>
+  <li><strong>Satın aldığınızda ya da geri yüklediğinizde:</strong> mağazanın o satın alma için verdiği kayıt (ürün, satın alma belirteci ya da mağazanın imzaladığı işlem bilgisi, işlem zamanı, fiyat ve para birimi).</li>
+  <li><strong>Amaç:</strong> paketinizin geçerliliğini mağazaya sorarak doğrulamak, satın almaları geri yüklemek, sahte satın almaları önlemek ve satışların toplam rakamlarını görmek.</li>
+  <li><strong>Saklama:</strong> mağaza işlem numaraları yalnız geri çevrilemez özetleriyle (HMAC) saklanır. Paket ve ödeme kayıtları mali kayıt olduğu için yasal saklama süresi boyunca (en çok 10 yıl) tutulur.</li>
+  <li>Bu bilgiler satılmaz, reklam hedeflemesinde kullanılmaz ve üçüncü kişilerle paylaşılmaz.</li>
+</ul>
+<p>Bu kayıtların silinmesini <a href="mailto:info@marfen.com.tr">info@marfen.com.tr</a> adresinden isteyebilirsiniz. Yasal ve muhasebe gereği tutulması gereken ödeme kayıtları silinmez, kimliksizleştirilir.</p>
 
 <h2>8. Çocuklar</h2>
 <p>Master Office 13 yaşından küçük çocuklara yönelik değildir ve bilerek çocuklardan kişisel bilgi toplamaz.</p>
@@ -72,7 +81,7 @@
 <hr>
 
 <h1 lang="en">Master Office — Privacy Policy</h1>
-<p class="date" lang="en">Effective date: 10 November 2026 (version 3.6.0: optional account and iOS)</p>
+<p class="date" lang="en">Effective date: 20 November 2026 (version 3.7: purchase verification). Previous version: 10 November 2026 (3.6.0: optional account and iOS).</p>
 <div lang="en">
 <p>This policy explains what information the Android and iOS app <strong>Master Office</strong> (package name <code>com.ofivora.app</code>) uses and how. Publisher and data controller: <strong>MARFEN</strong>. Contact: <strong><a href="mailto:info@marfen.com.tr">info@marfen.com.tr</a></strong>.</p>
 
@@ -80,7 +89,7 @@
 <p>Master Office opens and processes your documents (PDF, Word, Excel, PowerPoint, text, pictures, ZIP/RAR) only on your phone or tablet. Your documents, their contents and their file names are never uploaded to any server and are never sent to us or anyone else. Creating an account is optional (section 3); with an account, too, your documents are never sent.</p>
 
 <h2>2. Information kept on the device</h2>
-<p>The list of recent documents, favourites, your settings, the state of the package you bought and the daily use counter of the tools are stored only on your device. You can delete them with Settings &gt; Clear recent documents or by uninstalling the app.</p>
+<p>The list of recent documents, favourites, your settings, the state of the package you bought and the daily use counter of the tools are stored on your device; for the record of your package on the verification server, see section 7. You can delete them with Settings &gt; Clear recent documents or by uninstalling the app.</p>
 
 <h2>3. Optional account and settings sync</h2>
 <p>You can sign in in the app with your Google or Apple account. This is optional; every feature works without it. If you sign in, the following is stored:</p>
@@ -115,7 +124,16 @@
 <p>The Ad-free and Pro packages show no ads; the ads library is not even started.</p>
 
 <h2>7. Purchases</h2>
-<p>Packages are Google Play subscriptions on Android and App Store subscriptions on iOS, and payment is made through these stores. We never see your card or payment details. The app only asks the store which package is active. Cancellations and refunds are handled by the store under its rules.</p>
+<p>Packages are Google Play subscriptions on Android and App Store subscriptions on iOS, and payment is made through these stores. We never see your card or payment details. Cancellations and refunds are handled by the store under its rules.</p>
+<p>From version 3.7, which package is active is checked on MARFEN's subscription verification server (<code>abonelik.marfen.app</code>). The server runs on Cloudflare's infrastructure; Cloudflare does this on our behalf as a service provider.</p>
+<ul>
+  <li><strong>What is sent:</strong> a random customer ID created on first launch, the platform (Android / iOS), the app's language and version information. This ID is not tied to your name, email, account or advertising ID.</li>
+  <li><strong>When you buy or restore:</strong> the record the store gives for that purchase (product, purchase token or the store's signed transaction, purchase time, price and currency).</li>
+  <li><strong>Purpose:</strong> to verify with the store that your package is valid, to restore purchases, to prevent fraudulent purchases and to see total sales figures.</li>
+  <li><strong>Retention:</strong> store transaction numbers are kept only as irreversible digests (HMAC). Package and payment records are financial records and are kept for the legal retention period (up to 10 years).</li>
+  <li>This information is not sold, not used for ad targeting and not shared with third parties.</li>
+</ul>
+<p>You can ask for these records to be deleted at <a href="mailto:info@marfen.com.tr">info@marfen.com.tr</a>. Payment records that must be kept for legal and accounting reasons are not deleted but de-identified.</p>
 
 <h2>8. Children</h2>
 <p>Master Office is not directed at children under 13 and does not knowingly collect personal information from children.</p>
